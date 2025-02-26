@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Твой подарок</title>
+
+    <style>
+        /* Подключение рукописного шрифта */
+        @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');
+
+        /* Основные стили страницы */
+        body {
+            text-align: center; /* Выравнивание текста по центру */
+            font-family: 'Patrick Hand', cursive; /* Используем рукописный шрифт */
+            background: url('background.jpg') no-repeat center center fixed; /* Фон - изображение */
+            background-size: cover; /* Подгоняем фон под размер экрана */
+            color: #4a2c2a; /* Цвет текста */
+            height: 100vh; /* Высота всей страницы */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Стили для заголовка */
+        h1 {
+            font-size: 40px; /* Размер шрифта */
+            opacity: 0; /* Начальная невидимость */
+            animation: fadeIn 2s ease-in-out forwards; /* Анимация появления */
+            background: rgba(255, 255, 255, 0.7); /* Прозрачный фон */
+            padding: 10px 20px; /* Внутренние отступы */
+            border-radius: 10px; /* Скругление углов */
+            border: 2px dashed #4a2c2a; /* Пунктирная рамка */
+        }
+
+        /* Стили для текста */
+        p {
+            font-size: 22px;
+            opacity: 0;
+            animation: fadeIn 3s ease-in-out forwards;
+            max-width: 80%;
+            background: rgba(255, 255, 255, 0.7);
+            padding: 10px;
+            border-radius: 10px;
+            border: 2px solid #4a2c2a;
+            margin-top: 10px;
+        }
+
+        /* Стили для кнопки */
+        .download {
+            margin-top: 20px;
+            padding: 12px 25px;
+            background: #f8c291; /* Цвет фона кнопки */
+            color: #4a2c2a; /* Цвет текста */
+            border: 2px solid #4a2c2a;
+            font-size: 18px;
+            text-decoration: none; /* Убираем подчеркивание */
+            border-radius: 10px;
+            font-weight: bold;
+            box-shadow: 3px 3px 0px #4a2c2a; /* Эффект тени */
+            transition: 0.2s;
+        }
+
+        /* Эффект наведения на кнопку */
+        .download:hover {
+            background: #f3a683;
+            transform: scale(1.05); /* Лёгкое увеличение */
+        }
+
+        /* Анимация появления текста */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Плавающие рисунки (например, сердечки) */
+        .hand-drawn {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: url('heart.png') no-repeat center center; /* Картинка сердечка */
+            background-size: contain;
+            animation: float 3s infinite alternate ease-in-out; /* Анимация движения */
+        }
+
+        /* Анимация движения элементов */
+        @keyframes float {
+            from { transform: translateY(0); }
+            to { transform: translateY(-15px); }
+        }
+
+        /* Первое сердечко - слева вверху */
+        .heart1 { 
+            top: 10%; 
+            left: 10%; 
+        }
+
+        /* Второе сердечко - справа по центру */
+        .heart2 { 
+            top: 50%; 
+            right: 10%; 
+            animation-delay: 1s; /* Задержка появления */
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Плавающие сердечки (можно заменить картинку) -->
+    <div class="hand-drawn heart1"></div>
+    <div class="hand-drawn heart2"></div>
+
+    <!-- Заголовок -->
+    <h1>Тепло, которое всегда с тобой</h1>
+
+    <!-- Текстовое послание -->
+    <p>Это не просто подарок. Это что-то, что останется с тобой, как маленькая частичка воспоминаний.</p>
+
+    <!-- Кнопка скачивания музыки -->
+    <a class="download" href="https://www.mediafire.com/file/p4lz7kgaly7p29v/%25D0%25BE%25D1%2582%25D0%25BA%25D1%2580%25D1%258B%25D1%2582%25D0%25BA%25D0%25B0.html/file?dkey=7m45w7l4whc&r=854" download>Скачать музыку</a>
+
+    <!-- Музыка, которая играет в фоне -->
+    <audio id="bgMusic" loop>
+        <source src="music.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        // Запуск музыки при загрузке страницы
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('bgMusic').play().catch(() => {
+                console.log("Автозапуск музыки заблокирован.");
+            });
+        });
+    </script>
+</body>
+</html>
