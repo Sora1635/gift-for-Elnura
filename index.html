@@ -3,20 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Твой подарок</title>
+    <title>С днём рождения, крутышка!</title>
 
     <style>
-        /* Подключение рукописного шрифта */
-        @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&display=swap');
 
-        /* Основные стили страницы */
         body {
-            text-align: center; /* Выравнивание текста по центру */
-            font-family: 'Patrick Hand', cursive; /* Используем рукописный шрифт */
-            background: url('background.jpg') no-repeat center center fixed; /* Фон - изображение */
-            background-size: cover; /* Подгоняем фон под размер экрана */
-            color: #4a2c2a; /* Цвет текста */
-            height: 100vh; /* Высота всей страницы */
+            text-align: center;
+            font-family: 'Caveat', cursive;
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            color: #3b1f2b;
+            height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -25,114 +22,104 @@
             position: relative;
         }
 
-        /* Стили для заголовка */
         h1 {
-            font-size: 40px; /* Размер шрифта */
-            opacity: 0; /* Начальная невидимость */
-            animation: fadeIn 2s ease-in-out forwards; /* Анимация появления */
-            background: rgba(255, 255, 255, 0.7); /* Прозрачный фон */
-            padding: 10px 20px; /* Внутренние отступы */
-            border-radius: 10px; /* Скругление углов */
-            border: 2px dashed #4a2c2a; /* Пунктирная рамка */
-        }
-
-        /* Стили для текста */
-        p {
-            font-size: 22px;
+            font-size: 48px;
             opacity: 0;
-            animation: fadeIn 3s ease-in-out forwards;
-            max-width: 80%;
-            background: rgba(255, 255, 255, 0.7);
-            padding: 10px;
+            animation: slideIn 1.5s ease-out forwards;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 15px 25px;
+            border-radius: 15px;
+            border: 3px double #3b1f2b;
+        }
+
+        p {
+            font-size: 24px;
+            opacity: 0;
+            animation: slideIn 2s ease-out 0.5s forwards;
+            max-width: 70%;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 15px;
             border-radius: 10px;
-            border: 2px solid #4a2c2a;
-            margin-top: 10px;
+            border: 2px dashed #3b1f2b;
+            margin: 20px 0;
         }
 
-        /* Стили для кнопки */
-        .download {
-            margin-top: 20px;
-            padding: 12px 25px;
-            background: #f8c291; /* Цвет фона кнопки */
-            color: #4a2c2a; /* Цвет текста */
-            border: 2px solid #4a2c2a;
-            font-size: 18px;
-            text-decoration: none; /* Убираем подчеркивание */
-            border-radius: 10px;
-            font-weight: bold;
-            box-shadow: 3px 3px 0px #4a2c2a; /* Эффект тени */
-            transition: 0.2s;
+        .button {
+            margin: 10px;
+            padding: 15px 30px;
+            background: #ff9a8b;
+            color: #3b1f2b;
+            border: 2px solid #3b1f2b;
+            font-size: 20px;
+            border-radius: 12px;
+            cursor: pointer;
+            box-shadow: 4px 4px 0 #3b1f2b;
+            transition: all 0.3s ease;
         }
 
-        /* Эффект наведения на кнопку */
-        .download:hover {
-            background: #f3a683;
-            transform: scale(1.05); /* Лёгкое увеличение */
+        .button:hover {
+            background: #ff6f61;
+            transform: translateY(-3px) scale(1.1);
+            box-shadow: 6px 6px 0 #3b1f2b;
         }
 
-        /* Анимация появления текста */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
+        .floating-gift {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            background: url('https://raw.githubusercontent.com/username/main/gift.png') no-repeat center;
+            background-size: contain;
+            animation: bounce 4s infinite ease-in-out;
+        }
+
+        .gift1 { top: 15%; left: 15%; }
+        .gift2 { top: 60%; right: 20%; animation-delay: 1.5s; }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Плавающие рисунки (например, сердечки) */
-        .hand-drawn {
-            position: absolute;
-            width: 100px;
-            height: 100px;
-            background: url('heart.png') no-repeat center center; /* Картинка сердечка */
-            background-size: contain;
-            animation: float 3s infinite alternate ease-in-out; /* Анимация движения */
-        }
-
-        /* Анимация движения элементов */
-        @keyframes float {
-            from { transform: translateY(0); }
-            to { transform: translateY(-15px); }
-        }
-
-        /* Первое сердечко - слева вверху */
-        .heart1 { 
-            top: 10%; 
-            left: 10%; 
-        }
-
-        /* Второе сердечко - справа по центру */
-        .heart2 { 
-            top: 50%; 
-            right: 10%; 
-            animation-delay: 1s; /* Задержка появления */
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
         }
     </style>
 </head>
 
 <body>
-    <!-- Плавающие сердечки (можно заменить картинку) -->
-    <div class="hand-drawn heart1"></div>
-    <div class="hand-drawn heart2"></div>
+    <div class="floating-gift gift1"></div>
+    <div class="floating-gift gift2"></div>
 
-    <!-- Заголовок -->
-    <h1>Тепло, которое всегда с тобой</h1>
+    <h1>С днём рождения, самая классная!</h1>
+    <p>Тут не просто открытка, а целый ворох шмоток, чтобы ты улыбалась весь год. Выбирай, что качать!</p>
 
-    <!-- Текстовое послание -->
-    <p>Это не просто подарок. Это что-то, что останется с тобой, как маленькая частичка воспоминаний.</p>
+    <div>
+        <button class="button" onclick="downloadFile('music.mp3')">Музыка для души</button>
+        <button class="button" onclick="downloadFile('video.mp4')">Видео-сюрприз</button>
+        <button class="button" onclick="downloadFile('photo.jpg')">Твоё фото (ну почти)</button>
+    </div>
 
-    <!-- Кнопка скачивания музыки -->
-    <a class="download" href="https://www.mediafire.com/file/p4lz7kgaly7p29v/%25D0%25BE%25D1%2582%25D0%25BA%25D1%2580%25D1%258B%25D1%2582%25D0%25BA%25D0%25B0.html/file?dkey=7m45w7l4whc&r=854" download>Скачать музыку</a>
-
-    <!-- Музыка, которая играет в фоне -->
     <audio id="bgMusic" loop>
-        <source src="music.mp3" type="audio/mpeg">
+        <source src="https://raw.githubusercontent.com/username/main/music.mp3" type="audio/mpeg">
     </audio>
 
     <script>
-        // Запуск музыки при загрузке страницы
-        document.addEventListener('DOMContentLoaded', function() {
-            document.getElementById('bgMusic').play().catch(() => {
-                console.log("Автозапуск музыки заблокирован.");
-            });
+        document.addEventListener('DOMContentLoaded', () => {
+            const music = document.getElementById('bgMusic');
+            music.play().catch(() => console.log("Музыка не запустилась, браузер капризничает"));
         });
+
+        function downloadFile(filename) {
+            const baseUrl = 'https://raw.githubusercontent.com/username/main/';
+            const url = baseUrl + filename;
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = filename;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
     </script>
 </body>
 </html>
