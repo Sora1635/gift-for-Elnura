@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Страница [Номер]</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap');
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Open Sans', sans-serif;
+            color: #ffffff;
+            position: relative;
+            overflow: hidden;
+            user-select: none; /* Отключаем выделение текста */
+        }
+        img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+            filter: brightness(0.8); /* Лёгкое затемнение для читаемости текста */
+        }
+        .instruction {
+            position: absolute;
+            bottom: 20px;
+            font-size: 18px;
+            opacity: 0;
+            animation: fadeIn 1s ease-out 0.5s forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <img src="IMG_20250227_233308_871.jpg" alt="Фоновое изображение">
+    <!-- Текст "нажми на экран" только для первой страницы -->
+    [#IF_PAGE_1]
+    <div class="instruction">*нажми на экран*</div>
+    [/#IF_PAGE_1]
+    
+    <script>
+        document.addEventListener('click', (e) => {
+            const screenWidth = window.innerWidth;
+            const clickX = e.clientX;
+
+            // Правая половина — переход на следующую страницу
+            if (clickX > screenWidth / 2) {
+                const currentPage = parseInt(document.title.split(' ')[1]) || 1;
+                const nextPage = currentPage + 1;
+                window.location.href = 'page1.html';
+            }
+            // Левая половина — переход на предыдущую страницу
+            else if (clickX < screenWidth / 2) {
+                const currentPage = parseInt(document.title.split(' ')[1]) || 1;
+                const prevPage = currentPage - 1;
+                if (prevPage >= 1) {
+                    window.location.href = 'page1.html';
+                }
+            }
+        });
+    </script>
+</body>
+</html>
