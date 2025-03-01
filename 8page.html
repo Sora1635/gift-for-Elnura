@@ -58,25 +58,25 @@
         .easter-egg-button {
             position: absolute;
             top: 20px; /* На том же уровне, что и кнопка "Назад" */
-            left: 100px; /* Чуть дальше от кнопки "Назад" для читаемости */
-            width: 40px; /* Увеличен размер */
-            height: 40px; /* Увеличен размер */
-            background: rgba(255, 255, 255, 0.1); /* Почти незаметный фон */
+            left: 110px; /* Чуть дальше от кнопки "Назад" для читаемости */
+            width: 50px; /* Увеличен размер */
+            height: 50px; /* Увеличен размер */
+            background: rgba(255, 182, 193, 0.2); /* Лёгкий розовый оттенок */
             border: none;
             border-radius: 50%; /* Круглая форма */
             cursor: pointer;
-            opacity: 0.5; /* Более заметная начальная прозрачность */
+            opacity: 0.7; /* Более заметная начальная прозрачность */
             transition: opacity 0.3s ease;
             z-index: 1; /* Поверх фона */
-            animation: subtlePulse 2s infinite; /* Ненавязчивая пульсация */
+            animation: subtlePulse 1.5s infinite; /* Ускоренная и усиленная пульсация */
         }
         .easter-egg-button:hover {
-            opacity: 0.8; /* Заметнее при наведении */
+            opacity: 1; /* Полностью видимая при наведении */
         }
         /* Анимация пульсации */
         @keyframes subtlePulse {
             0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
+            50% { transform: scale(1.2); } /* Увеличен масштаб */
             100% { transform: scale(1); }
         }
     </style>
@@ -109,9 +109,9 @@
         });
 
         // Обработчик для пасхальной кнопки
-        easterEggButton.addEventListener('click', function(e) {
+        eEasterEggButton.addEventListener('click', function(e) {
             e.stopPropagation(); // Предотвращаем срабатывание клика по экрану
-            alert('Ты нашел пасхалку!'); // Всплывающее сообщение
+            alert('Oh, come on! ты нашла пасхалку! А знаешь что за это будет?)) я подарю тебе ещё один подарок, лишь загадай! ну или можно на любое одно желание)) загадывай❤️'); // Всплывающее сообщение
         });
     </script>
 </body>
