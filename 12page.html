@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Страница 2</title>
+    <!-- Предзагрузка фонового изображения -->
+    <link rel="preload" as="image" href="second-background.jpg">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap');
+
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #000000;
+            font-family: 'Raleway', sans-serif;
+            cursor: pointer; /* Указывает, что весь экран кликабелен */
+        }
+        .phone-screen {
+            width: 405px;
+            height: 720px;
+            background: url('IMG_20250301_203656_908.jpg') center/cover no-repeat; /* Добавлен фон */
+            position: relative;
+            overflow: hidden;
+        }
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.2); /* Чуть ярче для контраста с фоном */
+            border: none;
+            border-radius: 15px;
+            color: #ffffff;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            z-index: 1; /* Убедимся, что кнопка поверх фона */
+        }
+        .back-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+        .content-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 20px;
+            color: #ffffff;
+            text-align: center;
+            z-index: 1; /* Убедимся, что текст поверх фона */
+            text-shadow: 0 0 5px rgba(0, 0, 0, 0.7); /* Тень для читаемости на любом фоне */
+        }
+    </style>
+</head>
+<body>
+    <div class="phone-screen">
+        <button class="back-button" id="backButton">Назад</button>
+        <div class="content-text">покушать шаурмы, но я на орозо, как и ты🫠</div>
+    </div>
+
+    <script>
+        const backButton = document.getElementById('backButton');
+        const phoneScreen = document.querySelector('.phone-screen');
+
+        // Обработчик для кнопки "Назад"
+        backButton.addEventListener('click', function(e) {
+            e.stopPropagation(); // Предотвращаем срабатывание клика по экрану
+            window.location.href = '11page.html'; // Возврат на первую страницу
+        });
+
+        // Обработчик для клика по экрану
+        phoneScreen.addEventListener('click', function(e) {
+            // Проверяем, что клик не по кнопке "Назад"
+            if (e.target !== backButton) {
+                window.location.href = '13page.html'; // Переход на следующую страницу
+            }
+        });
+    </script>
+</body>
+</html>
