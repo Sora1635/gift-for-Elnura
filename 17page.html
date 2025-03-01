@@ -59,8 +59,7 @@
 <body>
     <div class="phone-screen">
         <button class="back-button" id="backButton">Назад</button>
-        <div class="content-text">Ты самая счастливая на свете, Эля, ведь не у каждого может стучать красивое сердце в открытке.
-        (нажми на экран для продолжения)</div>
+        <div class="content-text">ну сама понимаешь, через пару месяцев многие перестанут видеться, и вот,</div>
     </div>
 
     <script>
@@ -70,14 +69,14 @@
         // Обработчик для кнопки "Назад"
         backButton.addEventListener('click', function(e) {
             e.stopPropagation(); // Предотвращаем срабатывание клика по экрану
-            window.location.href = 'call.html'; // Возврат на первую страницу
+            window.location.href = '16page.html'; // Возврат на первую страницу
         });
 
         // Обработчик для клика по экрану
         phoneScreen.addEventListener('click', function(e) {
             // Проверяем, что клик не по кнопке "Назад"
             if (e.target !== backButton) {
-                window.location.href = '2page.html'; // Переход на следующую страницу
+                window.location.href = '18page.html'; // Переход на следующую страницу
             }
         });
     </script>
