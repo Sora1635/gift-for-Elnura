@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Страница 2</title>
     <!-- Предзагрузка фонового изображения -->
-    <link rel="preload" as="image" href="second-background.jpg">
+    <link rel="preload" as="image" href="IMG_20250301_203656_908.jpg">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap');
 
@@ -54,17 +54,38 @@
             z-index: 1; /* Убедимся, что текст поверх фона */
             text-shadow: 0 0 5px rgba(0, 0, 0, 0.7); /* Тень для читаемости на любом фоне */
         }
+        /* Стили для пасхальной кнопки */
+        .easter-egg-button {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            width: 20px;
+            height: 20px;
+            background: rgba(255, 255, 255, 0.1); /* Почти незаметный фон */
+            border: none;
+            border-radius: 50%; /* Круглая форма */
+            cursor: pointer;
+            opacity: 0.3; /* Полупрозрачная */
+            transition: opacity 0.3s ease;
+            z-index: 1; /* Поверх фона */
+        }
+        .easter-egg-button:hover {
+            opacity: 0.6; /* Чуть заметнее при наведении */
+        }
     </style>
 </head>
 <body>
     <div class="phone-screen">
         <button class="back-button" id="backButton">Назад</button>
         <div class="content-text">Как бы тебе сказать...</div>
+        <!-- Добавлена пасхальная кнопка -->
+        <button class="easter-egg-button" id="easterEggButton"></button>
     </div>
 
     <script>
         const backButton = document.getElementById('backButton');
         const phoneScreen = document.querySelector('.phone-screen');
+        const easterEggButton = document.getElementById('easterEggButton');
 
         // Обработчик для кнопки "Назад"
         backButton.addEventListener('click', function(e) {
@@ -74,10 +95,16 @@
 
         // Обработчик для клика по экрану
         phoneScreen.addEventListener('click', function(e) {
-            // Проверяем, что клик не по кнопке "Назад"
-            if (e.target !== backButton) {
+            // Проверяем, что клик не по кнопке "Назад" и не по пасхалке
+            if (e.target !== backButton && e.target !== easterEggButton) {
                 window.location.href = '9page.html'; // Переход на следующую страницу
             }
+        });
+
+        // Обработчик для пасхальной кнопки
+        easterEggButton.addEventListener('click', function(e) {
+            e.stopPropagation(); // Предотвращаем срабатывание клика по экрану
+            alert('Ты нашел пасхалку!'); // Всплывающее сообщение
         });
     </script>
 </body>
