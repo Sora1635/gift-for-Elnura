@@ -174,13 +174,7 @@
             }
             hasMoved = false;
         });
-        slideKnob.addEventListener('click', function(e) {
-            e.preventDefault();
-            if (!isDragging) {
-                toggleSlide();
-            }
-            hasMoved = false;
-        });
+        // Удалён обработчик клика для slideKnob, чтобы избежать двойного переключения
 
         function startDrag(e) {
             e.preventDefault();
