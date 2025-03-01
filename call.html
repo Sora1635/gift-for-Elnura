@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Входящий звонок</title>
-    <!-- Предзагрузка фонового изображения -->
     <link rel="preload" as="image" href="8c0a606d504275bd3e7d1aafc8ccfcbd.jpg">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap');
@@ -16,7 +15,7 @@
             justify-content: center;
             align-items: center;
             background: #000000;
-            font-family: sans-serif;
+            font-family: 'Raleway', sans-serif;
         }
         .phone-screen {
             width: 405px;
@@ -25,7 +24,6 @@
             position: relative;
             overflow: hidden;
         }
-        /* Псевдоэлемент для фоновой картинки с плавной анимацией */
         .phone-screen::before {
             content: "";
             position: absolute;
@@ -37,6 +35,7 @@
             opacity: 0;
             transition: opacity 0.5s ease;
             pointer-events: none;
+            z-index: 0;
         }
         .phone-screen.toggled::before {
             opacity: 1;
@@ -49,6 +48,8 @@
             justify-content: flex-end;
             align-items: center;
             padding-bottom: 50px;
+            position: relative;
+            z-index: 1;
         }
         .slide-container {
             width: 80%;
@@ -111,13 +112,10 @@
             cursor: pointer;
             transition: opacity 0.5s ease;
             opacity: 0;
-            pointer-events: none;
         }
         .next-button.visible {
             opacity: 1;
-            pointer-events: auto;
         }
-        /* Новый центральный текст */
         #hiddenText {
             position: absolute;
             top: 50%;
@@ -128,6 +126,7 @@
             font-family: 'Raleway', sans-serif;
             text-align: center;
             transition: color 0.5s ease;
+            z-index: 1;
         }
         .phone-screen.toggled #hiddenText {
             color: rgba(255, 255, 255, 1);
@@ -169,12 +168,16 @@
         document.addEventListener('touchend', endDrag);
 
         slideButton.addEventListener('click', function(e) {
-            if (!isDragging) {
+            if (!hasMoved && !isDragging) {
                 toggleSlide();
             }
-            hasMoved = false;
         });
-        // Удалён обработчик клика для slideKnob, чтобы избежать двойного переключения
+        slideKnob.addEventListener('click', function(e) {
+            e.preventDefault();
+            if (!hasMoved && !isDragging) {
+                toggleSlide();
+            }
+        });
 
         function startDrag(e) {
             e.preventDefault();
@@ -202,7 +205,7 @@
 
             currentX = newX;
             slideKnob.style.transform = `translateX(${currentX}px)`;
-            slideProgress.style.width = (currentX + slideKnob.offsetWidth) + 'px';
+            slideProgress.style.width = `${currentX + slideKnob.offsetWidth}px`;
         }
 
         function endDrag(e) {
@@ -215,7 +218,9 @@
             const maxX = rect.width - slideKnob.offsetWidth;
             const midpoint = maxX / 2;
 
-            if (currentX < midpoint) {
+            if (!hasMoved) {
+                toggleSlide();
+            } else if (currentX < midpoint) {
                 currentX = 0;
                 isToggled = false;
             } else {
@@ -224,7 +229,8 @@
             }
 
             slideKnob.style.transform = `translateX(${currentX}px)`;
-            slideProgress.style.width = (currentX + slideKnob.offsetWidth) + 'px';
+            slideProgress.style.width = `${currentX + slideKnob.offsetWidth}px`;
+            hasMoved = false;
 
             updateState();
         }
@@ -233,16 +239,11 @@
             const rect = slideButton.getBoundingClientRect();
             const maxX = rect.width - slideKnob.offsetWidth;
 
-            if (!isToggled) {
-                currentX = maxX;
-                isToggled = true;
-            } else {
-                currentX = 0;
-                isToggled = false;
-            }
+            isToggled = !isToggled;
+            currentX = isToggled ? maxX : 0;
 
             slideKnob.style.transform = `translateX(${currentX}px)`;
-            slideProgress.style.width = (currentX + slideKnob.offsetWidth) + 'px';
+            slideProgress.style.width = `${currentX + slideKnob.offsetWidth}px`;
 
             updateState();
         }
@@ -258,7 +259,9 @@
         }
 
         nextButton.addEventListener('click', function() {
-            window.location.href = 'page2.html';
+            setTimeout(() => {
+                window.location.href = 'page2.html';
+            }, 500); // Задержка для видимости кнопки
         });
     </script>
 </body>
