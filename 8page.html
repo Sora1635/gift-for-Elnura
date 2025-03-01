@@ -58,19 +58,26 @@
         .easter-egg-button {
             position: absolute;
             top: 20px; /* На том же уровне, что и кнопка "Назад" */
-            left: 90px; /* Рядом с кнопкой "Назад", с учетом её ширины */
-            width: 30px; /* Увеличен размер */
-            height: 30px; /* Увеличен размер */
+            left: 100px; /* Чуть дальше от кнопки "Назад" для читаемости */
+            width: 40px; /* Увеличен размер */
+            height: 40px; /* Увеличен размер */
             background: rgba(255, 255, 255, 0.1); /* Почти незаметный фон */
             border: none;
             border-radius: 50%; /* Круглая форма */
             cursor: pointer;
-            opacity: 0.3; /* Полупрозрачная */
+            opacity: 0.5; /* Более заметная начальная прозрачность */
             transition: opacity 0.3s ease;
             z-index: 1; /* Поверх фона */
+            animation: subtlePulse 2s infinite; /* Ненавязчивая пульсация */
         }
         .easter-egg-button:hover {
-            opacity: 0.6; /* Чуть заметнее при наведении */
+            opacity: 0.8; /* Заметнее при наведении */
+        }
+        /* Анимация пульсации */
+        @keyframes subtlePulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
         }
     </style>
 </head>
