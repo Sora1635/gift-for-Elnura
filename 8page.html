@@ -57,10 +57,10 @@
         /* Стили для пасхальной кнопки */
         .easter-egg-button {
             position: absolute;
-            bottom: 10px;
-            right: 10px;
-            width: 20px;
-            height: 20px;
+            top: 20px; /* На том же уровне, что и кнопка "Назад" */
+            left: 90px; /* Рядом с кнопкой "Назад", с учетом её ширины */
+            width: 30px; /* Увеличен размер */
+            height: 30px; /* Увеличен размер */
             background: rgba(255, 255, 255, 0.1); /* Почти незаметный фон */
             border: none;
             border-radius: 50%; /* Круглая форма */
@@ -77,9 +77,9 @@
 <body>
     <div class="phone-screen">
         <button class="back-button" id="backButton">Назад</button>
-        <div class="content-text">Как бы тебе сказать...</div>
         <!-- Добавлена пасхальная кнопка -->
         <button class="easter-egg-button" id="easterEggButton"></button>
+        <div class="content-text">Как бы тебе сказать...</div>
     </div>
 
     <script>
